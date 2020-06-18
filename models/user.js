@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const util = require("util");
@@ -39,6 +41,10 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+
+userSchema.plugin(uniqueValidator, {
+  message: "{VALUE} is already in use",
+});
 
 userSchema.methods.toJSON = function () {
   const user = this.toObject();
