@@ -23,7 +23,7 @@ router.post("/login", validateLoginRequist, async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findByCredentials({ email, password });
 
-  if (!user) throw new CustomError("Invalid Credentials", 401);
+  if (!user) throw new CustomError("Invalid Credentials", 422);
   const token = await user.generateToken();
 
   res.json({

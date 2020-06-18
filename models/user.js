@@ -60,7 +60,7 @@ userSchema.methods.checkPassword = async function (plainPassword) {
 
 userSchema.methods.generateToken = function () {
   const user = this;
-  return jwtSign({ id: user.id }, jwtSecret, { expiresIn: "1h" });
+  return jwtSign({ id: user.id }, jwtSecret, { expiresIn: "12h" });
 };
 
 userSchema.statics.getUserFromToken = async function (token) {
